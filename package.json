@@ -1,0 +1,36 @@
+{
+  "name": "try-graphql-tools",
+  "version": "1.0.0",
+  "description": "explore graphql-tools",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run lint",
+    "codegen": "graphql-codegen --config codegen.yml"
+  },
+  "keywords": [],
+  "author": "Dina Basumatary",
+  "license": "ISC",
+  "dependencies": {
+    "@types/lodash": "^4.14.165",
+    "apollo-server": "^2.19.0",
+    "graphql": "^15.4.0",
+    "graphql-tools": "^7.0.1",
+    "lodash": "^4.17.20"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "1.19.2",
+    "@types/node": "^14.11.2",
+    "gts": "^3.0.2",
+    "typescript": "^4.0.3",
+    "@graphql-codegen/typescript-resolvers": "1.17.11",
+    "@graphql-codegen/typescript": "1.17.11",
+    "@graphql-codegen/introspection": "1.18.0"
+  }
+}
