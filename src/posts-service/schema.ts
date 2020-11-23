@@ -1,17 +1,24 @@
 import {ITypeDefinitions} from '@graphql-tools/utils';
 
 const typeDefs: ITypeDefinitions = `
-type Author {
+
+type Post {
   id: Int!
-  firstName: String
-  lastName: String
+  title: String
+  votes: Int
 }
 
 # the schema allows the following query:
 type Query {
-  author(id: Int!): Author
+  posts: [Post]
 }
 
+# this schema allows the following mutation:
+type Mutation {
+  upvotePost (
+    postId: Int!
+  ): Post
+}
 `;
 
 export default typeDefs;

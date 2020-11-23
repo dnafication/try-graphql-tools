@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "authors-service": "nodemon -w build build/src",
+    "posts-service": "nodemon -w build build/src/posts-service",
+    "dev": "concurrently \"npm:authors-service\" \"npm:posts-service\"",
     "lint": "gts lint",
     "clean": "gts clean",
     "compile": "tsc",
@@ -18,19 +21,22 @@
   "author": "Dina Basumatary",
   "license": "ISC",
   "dependencies": {
-    "@types/lodash": "^4.14.165",
-    "apollo-server": "^2.19.0",
+    "apollo-server-express": "2.19.0",
+    "concurrently": "5.3.0",
+    "express": "4.17.1",
     "graphql": "^15.4.0",
     "graphql-tools": "^7.0.1",
     "lodash": "^4.17.20"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "1.19.2",
+    "@graphql-codegen/introspection": "1.18.0",
+    "@graphql-codegen/typescript": "1.17.11",
+    "@graphql-codegen/typescript-resolvers": "1.17.11",
+    "@types/lodash": "^4.14.165",
     "@types/node": "^14.11.2",
     "gts": "^3.0.2",
-    "typescript": "^4.0.3",
-    "@graphql-codegen/typescript-resolvers": "1.17.11",
-    "@graphql-codegen/typescript": "1.17.11",
-    "@graphql-codegen/introspection": "1.18.0"
+    "nodemon": "2.0.6",
+    "typescript": "^4.0.3"
   }
 }

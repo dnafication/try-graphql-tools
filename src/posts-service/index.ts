@@ -5,21 +5,19 @@ import {ApolloServer} from 'apollo-server-express';
 import typeDefs from './schema';
 import resolvers from './resolvers';
 
-export const localSchema = makeExecutableSchema({
+export const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
 });
 
-// remote schema stitching:
-
 const server = new ApolloServer({
-  schema: localSchema,
+  schema,
 });
 
 const app = express();
 server.applyMiddleware({app});
 
-const PORT = 5000;
+const PORT = 5001;
 
 app.listen({port: PORT}, () =>
   console.log(
