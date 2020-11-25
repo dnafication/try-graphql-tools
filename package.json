@@ -21,6 +21,7 @@
   "author": "Dina Basumatary",
   "license": "ISC",
   "dependencies": {
+    "apollo-link-http": "1.5.17",
     "apollo-server-express": "2.19.0",
     "concurrently": "5.3.0",
     "express": "4.17.1",
