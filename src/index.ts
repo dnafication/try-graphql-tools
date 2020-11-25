@@ -1,28 +1,27 @@
 import {makeExecutableSchema} from '@graphql-tools/schema';
+import {loadSchema, UrlLoader} from 'graphql-tools';
 import express from 'express';
 import {ApolloServer} from 'apollo-server-express';
 
 import typeDefs from './schema';
 import resolvers from './resolvers';
+import {makeApolloServer} from './util/makeServer';
 
 export const localSchema = makeExecutableSchema({
   typeDefs,
   resolvers,
 });
 
-// remote schema stitching:
+// schema loading: url loader
+async function loadRemoteSchema() {
+  const postsSchema = await loadSchema('http://localhost:5001/graphql', {
+    loaders: [new UrlLoader()],
+  });
+}
 
-const server = new ApolloServer({
-  schema: localSchema,
-});
+/**
+ * You can chose to introspect just once and store the information in memory.
+ * It may not be possible in case of lambda
+ */
 
-const app = express();
-server.applyMiddleware({app});
-
-const PORT = 5000;
-
-app.listen({port: PORT}, () =>
-  console.log(
-    `🚀  Server ready at port http://localhost:${PORT}${server.graphqlPath}`
-  )
-);
+makeApolloServer(localSchema, 5000);

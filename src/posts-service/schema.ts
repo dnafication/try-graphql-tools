@@ -1,6 +1,4 @@
-import {ITypeDefinitions} from '@graphql-tools/utils';
-
-const typeDefs: ITypeDefinitions = `
+const typeDefs = `
 
 type Post {
   id: Int!
