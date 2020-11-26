@@ -1,4 +1,4 @@
-import authorTypes from './schema';
+import authorTypes from './author-service/schema';
 import postTypes from './posts-service/schema';
 import {mergeTypeDefs} from 'graphql-tools';
 import {print} from 'graphql';

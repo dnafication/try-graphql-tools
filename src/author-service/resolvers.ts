@@ -1,5 +1,5 @@
 import {IResolvers} from '@graphql-tools/utils';
-import {find, filter} from 'lodash';
+import {find} from 'lodash';
 
 // example data
 const authors = [
@@ -10,16 +10,11 @@ const authors = [
 
 const resolvers: IResolvers = {
   Query: {
-    author: (_, {id}) => find(authors, {id}),
+    author: (_, {id}) => {
+      console.count('author');
+      return find(authors, {id});
+    },
   },
-
-  // Author: {
-  //   posts: author => filter(posts, {authorId: author.id}),
-  // },
-
-  // Post: {
-  //   author: post => find(authors, {id: post.authorId}),
-  // },
 };
 
 export default resolvers;

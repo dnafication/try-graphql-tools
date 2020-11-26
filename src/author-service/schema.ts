@@ -1,6 +1,4 @@
-import {ITypeDefinitions} from '@graphql-tools/utils';
-
-const typeDefs: ITypeDefinitions = `
+const typeDefs = `
 type Author {
   id: Int!
   firstName: String
@@ -11,7 +9,6 @@ type Author {
 type Query {
   author(id: Int!): Author
 }
-
 `;
 
 export default typeDefs;

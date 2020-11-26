@@ -4,9 +4,9 @@ import typeDefs from './schema';
 import resolvers from './resolvers';
 import {makeApolloServer} from '../util/makeServer';
 
-export const schema = makeExecutableSchema({
+export const authorSchema = makeExecutableSchema({
   typeDefs,
   resolvers,
 });
 
-makeApolloServer(schema, 5001);
+makeApolloServer(authorSchema, 5002);

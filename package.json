@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "authors-service": "nodemon -w build build/src",
+    "authors-service": "nodemon -w build build/src/author-service",
     "posts-service": "nodemon -w build build/src/posts-service",
     "dev": "concurrently \"npm:authors-service\" \"npm:posts-service\"",
     "lint": "gts lint",

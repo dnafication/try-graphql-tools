@@ -1,5 +1,5 @@
 import {IResolvers} from '@graphql-tools/utils';
-import {find} from 'lodash';
+import {filter, find} from 'lodash';
 
 // example data
 const posts = [
@@ -12,6 +12,10 @@ const posts = [
 const resolvers: IResolvers = {
   Query: {
     posts: () => posts,
+    postsByAuthorId: (_, {authorId}) => {
+      console.count('postsByAuthorId');
+      return filter(posts, {authorId});
+    },
   },
 
   Mutation: {
