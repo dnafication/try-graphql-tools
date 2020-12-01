@@ -1,6 +1,6 @@
 import authorTypes from './author-service/schema';
 import postTypes from './posts-service/schema';
-import {mergeTypeDefs} from 'graphql-tools';
+import {mergeTypeDefs} from '@graphql-tools/merge';
 import {print} from 'graphql';
 
 const extendedType = `

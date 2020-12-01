@@ -17,16 +17,28 @@
     "posttest": "npm run lint",
     "codegen": "graphql-codegen --config codegen.yml"
   },
+  "engines": {
+    "node": ">=12"
+  },
   "keywords": [],
   "author": "Dina Basumatary",
   "license": "ISC",
   "dependencies": {
+    "@graphql-tools/batch-delegate": "7.0.0",
+    "@graphql-tools/delegate": "7.0.5",
+    "@graphql-tools/load": "6.2.5",
+    "@graphql-tools/merge": "6.2.5",
+    "@graphql-tools/mock": "7.0.0",
+    "@graphql-tools/schema": "7.0.0",
+    "@graphql-tools/stitch": "7.0.4",
+    "@graphql-tools/url-loader": "6.4.0",
+    "@graphql-tools/utils": "7.0.2",
+    "@graphql-tools/wrap": "7.0.1",
     "apollo-link-http": "1.5.17",
     "apollo-server-express": "2.19.0",
     "concurrently": "5.3.0",
     "express": "4.17.1",
     "graphql": "^15.4.0",
-    "graphql-tools": "^7.0.1",
     "lodash": "^4.17.20"
   },
   "devDependencies": {

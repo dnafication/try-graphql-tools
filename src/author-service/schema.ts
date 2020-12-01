@@ -8,6 +8,7 @@ type Author {
 # the schema allows the following query:
 type Query {
   author(id: Int!): Author
+  authorsByIds(ids: [Int]!): [Author]
 }
 `;
 

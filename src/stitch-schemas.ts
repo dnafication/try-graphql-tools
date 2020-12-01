@@ -1,12 +1,10 @@
-import {makeExecutableSchema} from '@graphql-tools/schema';
-import {
-  delegateToSchema,
-  loadSchema,
-  stitchSchemas,
-  UrlLoader,
-} from 'graphql-tools';
+import {stitchSchemas} from '@graphql-tools/stitch';
+import {UrlLoader} from '@graphql-tools/url-loader';
+import {loadSchema} from '@graphql-tools/load';
 
 import {makeApolloServer} from './util/makeServer';
+import {delegateToSchema} from '@graphql-tools/delegate';
+import {batchDelegateToSchema} from '@graphql-tools/batch-delegate';
 
 /**
  * You can chose to introspect just once and store the information in memory.
@@ -36,7 +34,7 @@ async function stitchOurSchemas() {
     subschemas: [{schema: postsSchema}, {schema: authorSchema}],
     typeDefs: `
       extend type Post {
-        author: Author!
+        author: Author
       }
       extend type Author {
         posts: [Post!]
@@ -46,7 +44,7 @@ async function stitchOurSchemas() {
       Author: {
         posts: {
           selectionSet: '{id}', // it is like the fragment this will be included whether its queried originally or not
-          resolve(author, args, context, info) {
+          resolve(author, _args, context, info) {
             return delegateToSchema({
               schema: postsSchema,
               operation: 'query',
@@ -61,12 +59,13 @@ async function stitchOurSchemas() {
       Post: {
         author: {
           selectionSet: '{authorId}',
-          resolve(post, args, context, info) {
-            return delegateToSchema({
+          resolve(post, _args, context, info) {
+            return batchDelegateToSchema({
               schema: authorSchema,
               operation: 'query',
-              fieldName: 'author',
-              args: {id: post.authorId},
+              fieldName: 'authorsByIds',
+              key: post.authorId,
+              argsFromKeys: authorIds => ({ids: authorIds}),
               context,
               info,
             });

@@ -1,8 +1,7 @@
 import {makeExecutableSchema} from '@graphql-tools/schema';
+
 import {addMocksToSchema} from '@graphql-tools/mock';
-import express from 'express';
-import {ApolloServer} from 'apollo-server-express';
-import {mergeSchemas} from 'graphql-tools';
+import {mergeSchemas} from '@graphql-tools/merge';
 import {makeApolloServer} from './util/makeServer';
 
 let postsSchema = makeExecutableSchema({
